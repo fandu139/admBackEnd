@@ -1,0 +1,12 @@
+{
+  "name": "Administrasi: Go",
+  "description": "Administarsi Go Rest API",
+  "keywords": [
+    "admbackend",
+    "go",
+    "sample",
+    "example"
+  ],
+  "website": "https://github.com/fandu139/admbackend",
+  "repository": "http://github.com/heroku/go-getting-started"
+}

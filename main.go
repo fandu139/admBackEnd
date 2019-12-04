@@ -1,14 +1,21 @@
 package main
 
 import (
-	"io"
+	// "log"
+	// "net/http"
+	// "os"
+
+	"log"
 	"net/http"
 	"os"
+
+	"github.com/gin-gonic/gin"
+	_ "github.com/heroku/x/hmetrics/onload"
 )
 
-func hello(w http.ResponseWriter, r *http.Request) {
-	io.WriteString(w, "Hello Word")
-}
+// func hello(w http.ResponseWriter, r *http.Request) {
+// 	io.WriteString(w, "Hello Word")
+// }
 
 func main() {
 	// route := gin.Default()
@@ -36,7 +43,25 @@ func main() {
 	// 	// fmt.Printf("id: %s; page: %s; name: %s; message: %s", id, page, name, message)
 	// })
 	// route.Run(":8089") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+
+	// port := os.Getenv("PORT")
+	// http.HandleFunc("/", hello)
+	// http.ListenAndServe(":"+port, nil)
+
 	port := os.Getenv("PORT")
-	http.HandleFunc("/", hello)
-	http.ListenAndServe(":"+port, nil)
+
+	if port == "" {
+		log.Fatal("$PORT must be set")
+	}
+
+	router := gin.New()
+	router.Use(gin.Logger())
+	router.LoadHTMLGlob("templates/*.tmpl.html")
+	router.Static("/static", "static")
+
+	router.GET("/", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "index.tmpl.html", nil)
+	})
+
+	router.Run(":" + port)
 }
