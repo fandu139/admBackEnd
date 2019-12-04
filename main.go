@@ -1,11 +1,12 @@
 package main
 
 import (
-  "github.com/gin-gonic/gin"
-  "net/http"
+	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
-func main () {
+func main() {
 	route := gin.Default()
 	route.GET("/", func(context *gin.Context) {
 		context.JSON(http.StatusOK, gin.H{
@@ -16,13 +17,13 @@ func main () {
 	route.POST("/auth", func(context *gin.Context) {
 		// context.JSON(http.StatusOK, gin.H{
 		// 	"message": "Server Sudah Jalan",
-    // })
-    // id := context.Query("id")
+		// })
+		// id := context.Query("id")
 		// page := context.DefaultQuery("page", "0")
 		name := context.PostForm("name")
 		message := context.PostForm("message")
 
-    context.JSON(200, gin.H{
+		context.JSON(200, gin.H{
 			"status":  "posted",
 			"message": message,
 			"name":    name,
