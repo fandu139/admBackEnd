@@ -10,7 +10,6 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	_ "github.com/heroku/x/hmetrics/onload"
 )
 
 // func hello(w http.ResponseWriter, r *http.Request) {
