@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 	"os"
 
@@ -11,9 +12,11 @@ func main() {
 
 	port := os.Getenv("PORT")
 
-	// if port == "" {
-	// 	log.Fatal("$PORT must be set")
-	// }
+	// Start Off in Codding if you Run Local
+	if port == "" {
+		log.Fatal("$PORT must be set")
+	}
+	// End Off in Codding if you Run Local
 
 	route := gin.New()
 	route.Use(gin.Logger())
@@ -35,5 +38,5 @@ func main() {
 
 		// fmt.Printf("id: %s; page: %s; name: %s; message: %s", id, page, name, message)
 	})
-	route.Run(":" + port) // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+	route.Run(":" + port) // Change Port if you run Local
 }
