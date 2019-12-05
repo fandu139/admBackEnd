@@ -2,11 +2,21 @@ package main
 
 import (
 	"net/http"
+	"os"
+
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	route := gin.Default()
+
+	port := os.Getenv("PORT")
+
+	// if port == "" {
+	// 	log.Fatal("$PORT must be set")
+	// }
+
+	route := gin.New()
+	route.Use(gin.Logger())
 	route.GET("/", func(context *gin.Context) {
 		context.JSON(http.StatusOK, gin.H{
 			"message": "Server Sudah Jalan",
@@ -25,5 +35,5 @@ func main() {
 
 		// fmt.Printf("id: %s; page: %s; name: %s; message: %s", id, page, name, message)
 	})
-	route.Run(":8089") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+	route.Run(":" + port) // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
