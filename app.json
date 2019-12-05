@@ -2,11 +2,10 @@
   "name": "Administrasi: Go",
   "description": "Administarsi Go Rest API",
   "keywords": [
-    "admbackend",
+    "administrasi",
     "go",
-    "sample",
     "example"
   ],
-  "website": "https://git.heroku.com/shrouded-chamber-70937.git",
-  "repository": "https://git.heroku.com/shrouded-chamber-70937.git"
+  "website": "https://github.com/fandu139/admBackEnd",
+  "repository": "https://github.com/fandu139/admBackEnd"
 }

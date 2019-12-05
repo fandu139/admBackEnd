@@ -1,1 +1,1 @@
-web: bin/go-admBackEnd
+web: bin/administrasi
