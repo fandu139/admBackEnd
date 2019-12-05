@@ -1,1 +1,1 @@
-web: bin/administrasi
+web: bin/admBackEnd

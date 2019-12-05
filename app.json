@@ -1,8 +1,8 @@
 {
-  "name": "Administrasi: Go",
-  "description": "Administarsi Go Rest API",
+  "name": "admBackEnd: Go",
+  "description": "admBackEnd Go Rest API",
   "keywords": [
-    "administrasi",
+    "admBackEnd",
     "go",
     "example"
   ],
