@@ -77,14 +77,20 @@ type User struct {
 
 func main() {
 	port := os.Getenv("PORT")
-	gin.SetMode(gin.ReleaseMode)
-	r := gin.New()
-	r.Use(gin.Logger())
-	r.Use(gin.Recovery())
+	// gin.SetMode(gin.ReleaseMode)
+	router := gin.New()
+	router.Use(gin.Logger())
+	router.Use(gin.Recovery())
 
 	if port == "" {
 		port = "8000"
 	}
+
+	router.GET("/", func(context *gin.Context) {
+		context.JSON(http.StatusOK, gin.H{
+			"message": "Server Sudah Jalan",
+		})
+	})
 
 	// the jwt middleware
 	authMiddleware, err := jwt.New(&jwt.GinJWTMiddleware{
@@ -161,15 +167,15 @@ func main() {
 		log.Fatal("JWT Error:" + err.Error())
 	}
 
-	r.POST("/login", authMiddleware.LoginHandler)
+	router.POST("/login", authMiddleware.LoginHandler)
 
-	r.NoRoute(authMiddleware.MiddlewareFunc(), func(c *gin.Context) {
+	router.NoRoute(authMiddleware.MiddlewareFunc(), func(c *gin.Context) {
 		claims := jwt.ExtractClaims(c)
 		log.Printf("NoRoute claims: %#v\n", claims)
 		c.JSON(404, gin.H{"code": "PAGE_NOT_FOUND", "message": "Page not found"})
 	})
 
-	auth := r.Group("/auth")
+	auth := router.Group("/auth")
 	// Refresh time can be longer than token timeout
 	auth.GET("/refresh_token", authMiddleware.RefreshHandler)
 	auth.Use(authMiddleware.MiddlewareFunc())
@@ -177,7 +183,7 @@ func main() {
 		auth.GET("/hello", helloHandler)
 	}
 
-	if err := http.ListenAndServe(":"+port, r); err != nil {
+	if err := http.ListenAndServe(":"+port, router); err != nil {
 		log.Fatal(err)
 	}
 }
