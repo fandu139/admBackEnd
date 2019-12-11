@@ -4,6 +4,7 @@ go 1.13
 
 require (
 	github.com/Bowery/prompt v0.0.0-20190916142128-fa8279994f75 // indirect
+	github.com/appleboy/gin-jwt v2.5.0+incompatible
 	github.com/appleboy/gin-jwt/v2 v2.6.2
 	github.com/dchest/safefile v0.0.0-20151022103144-855e8d98f185 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
@@ -15,5 +16,6 @@ require (
 	github.com/tools/godep v0.0.0-20180126220526-ce0bfadeb516 // indirect
 	golang.org/x/sys v0.0.0-20191204072324-ce4227a45e2e // indirect
 	golang.org/x/tools v0.0.0-20191204011308-9611592c72f6 // indirect
+	gopkg.in/dgrijalva/jwt-go.v3 v3.2.0 // indirect
 	gopkg.in/yaml.v2 v2.2.7 // indirect
 )
