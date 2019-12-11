@@ -1,1 +1,1 @@
-web: admBackEnd
+web: bin/admBackEnd
